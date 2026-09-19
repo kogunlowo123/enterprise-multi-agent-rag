@@ -1,0 +1,31 @@
+# Qdrant-backed deployment.
+#   docker compose up -d qdrant
+#   docker compose run --rm emrag ingest /corpus
+#   docker compose run --rm emrag ask "How long must passwords be?"
+# The application retries with backoff, so a slow Qdrant start is tolerated.
+services:
+  qdrant:
+    image: qdrant/qdrant:v1.12.4
+    ports:
+      - "6333:6333"
+    volumes:
+      - qdrant_data:/qdrant/storage
+
+  emrag:
+    build: .
+    depends_on:
+      - qdrant
+    environment:
+      EMRAG_VECTOR_STORE: qdrant
+      EMRAG_QDRANT_URL: http://qdrant:6333
+      EMRAG_LLM_PROVIDER: ${EMRAG_LLM_PROVIDER:-extractive}
+      EMRAG_EMBEDDING_PROVIDER: ${EMRAG_EMBEDDING_PROVIDER:-hashing}
+      EMRAG_OPENAI_API_KEY: ${EMRAG_OPENAI_API_KEY:-}
+      EMRAG_ANTHROPIC_API_KEY: ${EMRAG_ANTHROPIC_API_KEY:-}
+    volumes:
+      - ./data/sample_corpus:/corpus:ro
+      - emrag_data:/data
+
+volumes:
+  qdrant_data:
+  emrag_data:
