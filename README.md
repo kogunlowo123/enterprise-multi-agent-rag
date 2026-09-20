@@ -1,5 +1,9 @@
 # Enterprise Multi-Agent RAG
 
+![Banner](docs/banner.png)
+
+> If this project is useful, a star helps other engineers find it.
+
 Retrieval-augmented question answering built as four cooperating agents (planner, retriever, answer,
 validator) with hybrid search, verified citations and a hallucination gate. It answers from your
 documents, shows where each claim came from, and says so when the documents do not contain the answer.
