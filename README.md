@@ -487,3 +487,8 @@ add providers, stores and rerankers. Report vulnerabilities privately as describ
 ## License
 
 Released under the [MIT License](LICENSE).
+
+<!-- architecture -->
+## Architecture
+
+![Architecture diagram](docs/architecture.svg)
