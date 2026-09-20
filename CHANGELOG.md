@@ -6,6 +6,18 @@ All notable changes to this project are documented here. The format follows
 
 ## [Unreleased]
 
+### Changed
+
+- The compose file publishes the Qdrant port on 127.0.0.1 only.
+
+### Fixed
+
+- `Settings` accepts `openai_api_key` and `anthropic_api_key` as constructor arguments again.
+
+### Added
+
+- Container `HEALTHCHECK` that runs `emrag --help`.
+
 ## [0.1.0] - 2026-09-19
 
 ### Added
