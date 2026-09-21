@@ -174,7 +174,6 @@ records in [docs/adr](docs/adr).
 ```
 enterprise-multi-agent-rag/
 ├── .github/
-│   ├── dependabot.yml
 │   └── workflows/
 │       ├── ci.yml                    # lint, format, types, tests, audit, build
 │       └── codeql.yml                # static analysis
@@ -420,7 +419,7 @@ variable.
 | Credentials in logs and errors | Redaction on every log record and CLI error; keys held as `SecretStr` |
 | Oversized or hostile files | Size limits, binary detection, symlinks never followed |
 | Runaway loops | Bounded retries and a workflow step budget |
-| Vulnerable dependencies | `pip-audit`, Dependabot and CodeQL in CI |
+| Vulnerable dependencies | `pip-audit` and CodeQL in CI |
 | Container | Multi-stage build, non-root user |
 
 Screening and redaction are heuristic and the grounding check is lexical; see [Limitations](#limitations)
@@ -455,8 +454,7 @@ Static checks: `make lint` (ruff) and `make typecheck` (`mypy --strict`).
 | Dependency audit | `pip-audit` against `requirements.txt` |
 | Build validation | Builds sdist and wheel, `twine check`, builds and smoke-tests the Docker image |
 
-`.github/workflows/codeql.yml` runs CodeQL on pushes, pull requests and weekly. Dependabot proposes
-weekly updates for pip, GitHub Actions and Docker.
+`.github/workflows/codeql.yml` runs CodeQL on pushes, pull requests and weekly.
 
 ## Limitations
 

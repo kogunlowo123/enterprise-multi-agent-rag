@@ -41,7 +41,7 @@ upstream.
 | Path traversal via symlinks | Symbolic links are never followed during ingestion | `ingestion/loader.py` |
 | Runaway agent loops | Bounded retry attempts and a hard workflow step budget | `pipeline.py`, `graph.py` |
 | Unreliable upstreams | Bounded exponential backoff on 429/5xx and transport errors only | `retry.py`, `providers/http.py` |
-| Vulnerable dependencies | `pip-audit` in CI, Dependabot, CodeQL | `.github/` |
+| Vulnerable dependencies | `pip-audit` in CI, CodeQL | `.github/` |
 | Container hardening | Multi-stage build, non-root user, no build tooling in the runtime image | `Dockerfile` |
 
 ## Known limitations
